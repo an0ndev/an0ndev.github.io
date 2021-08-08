@@ -1,1 +1,24 @@
-test
+<head><script>
+    var path = new URL (window.location.href).pathname;
+    function out (text) { document.body.innerText = text; }
+    if (!(path.startsWith ("/out/"))) {
+        out ("page not found");
+    }
+    var target = path.substr ("/out/".length);
+    fetch (`https://raw.githubusercontent.com/an0ndev/an0ndev_out/master/${target}`)
+    .then (response => {
+        if (!(response.status == 200)) {
+            throw Error ((response.status == 404) ? `redirect not found` : `response status is not ${response.status}`);
+        }
+        return response.text ();
+    })
+    .then (targetUrl => { window.location.href = targetUrl })
+    .catch (error => {
+        console.error (error.toString ());
+        console.error (typeof error.toString ());
+        out (error.toString ());
+    });
+</script></head>
+<body>
+    loading
+</body>
