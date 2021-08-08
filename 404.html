@@ -1,4 +1,4 @@
-<head><script>
+<head><script>window.addEventListener ("load", function () {
     var path = new URL (window.location.href).pathname;
     function out (text) { document.body.innerText = text; }
     if (!(path.startsWith ("/out/"))) {
@@ -18,7 +18,7 @@
         console.error (typeof error.toString ());
         out (error.toString ());
     });
-</script></head>
+});</script></head>
 <body>
     loading
 </body>
