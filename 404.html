@@ -3,19 +3,22 @@
     function out (text) { document.body.innerText = text; }
     if (!(path.startsWith ("/out/"))) {
         out ("page not found");
+        return;
     }
     var target = path.substr ("/out/".length);
+    if (target.length < 1) {
+        out ("no target specified");
+        return;
+    }
     fetch (`https://raw.githubusercontent.com/an0ndev/an0ndev_out/master/${target}`)
     .then (response => {
         if (!(response.status == 200)) {
-            throw Error ((response.status == 404) ? `redirect not found` : `response status is not ${response.status}`);
+            throw Error ((response.status == 404) ? `redirect not found` : `url request failed, response status is ${response.status}`);
         }
         return response.text ();
     })
     .then (targetUrl => { window.location.href = targetUrl })
     .catch (error => {
-        console.error (error.toString ());
-        console.error (typeof error.toString ());
         out (error.toString ());
     });
 });</script></head>
