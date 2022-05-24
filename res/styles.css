@@ -1,0 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@100&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200");
+
+h1,h3,a {
+    font-family: "Roboto Mono", monospace;
+}
+
+body {
+    margin: 0;
+}
+.full-page {
+    margin: 5vh 5vw 5vh 5vw;
+    width: 90vw;
+    height: 90vh;
+}
+.intro-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.intro-logo {
+    width: 50vh;
+    height: 50vh;
+}
+.intro-title {
+    font-size: 4vh;
+    margin-block-start: 1.33vh;
+    margin-block-end: 1.33vh;
+}
+.intro-subtitle {
+    font-size: 2.34vh;
+    margin-block-start: 2vh;
+    margin-block-end: 2vh;
+}
+.intro-links {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+.intro-links > a {
+    font-style: italic;
+    padding: 0 2vh 0 2vh;
+
+    font-size: 2vh;
+    margin-block-start: 2vh;
+    margin-block-end: 2vh;
+
+    display: flex;
+    justify-content: center;
+}
+.material-symbols-outlined {
+    font-size: 2.5vh;
+}
+.email-name:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
