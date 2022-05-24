@@ -32,6 +32,7 @@ body {
     font-size: 2.34vh;
     margin-block-start: 2vh;
     margin-block-end: 2vh;
+    text-align: center;
 }
 .intro-links {
     display: flex;
