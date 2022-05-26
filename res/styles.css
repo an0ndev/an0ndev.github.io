@@ -1,10 +1,96 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@100&display=swap');
 @import url("https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200");
 
+/* Light/dark mode */
+html > body.light-mode {
+    color: #202020;
+    fill: #202020;
+    background-color: #DFDFDF;
+    transition: color 1s, fill 1s, background-color 1s;
+}
+html > body.dark-mode {
+    color: #DFDFDF;
+    fill: #DFDFDF;
+    background-color: #202020;
+    transition: color 1s, fill 1s, background-color 1s;
+}
+.brightness-toggle-container {
+    position: absolute;
+    left: 0; top: 0;
+    width: 100vw;
+
+    display: flex;
+    justify-content: center;
+
+    overflow: hidden;
+
+}
+.brightness-toggle {
+    padding-top: 1vh;
+    font-size: 5vh !important;
+    transform-origin: top;
+}
+.brightness-toggle:hover {
+    cursor: pointer;
+}
+.light-icon.brightness-toggle-initial, .dark-icon.brightness-toggle-initial {
+    animation-duration: 0s !important;
+}
+.light-mode .light-icon {
+    transform: rotate(360deg);
+    animation-duration: 1s;
+    animation-name: rotate-show;
+    z-index: 2;
+}
+.light-mode .dark-icon {
+    transform: rotate(180deg);
+    animation-duration: 1s;
+    animation-name: rotate-hide;
+    z-index: 1;
+}
+.dark-mode .light-icon {
+    transform: rotate(180deg);
+    animation-duration: 1s;
+    animation-name: rotate-hide;
+    z-index: 1;
+}
+.dark-mode .dark-icon {
+    transform: rotate(360deg);
+    animation-duration: 1s;
+    animation-name: rotate-show;
+    z-index: 2;
+}
+@keyframes rotate-hide {
+    from {
+        transform: rotate(360deg);
+    }
+    to {
+        transform: rotate(180deg);
+    }
+}
+@keyframes rotate-show {
+    from {
+        transform: rotate(180deg);
+    }
+    to {
+        transform: rotate(0deg);
+    }
+}
+.light-mode .brightness-toggle:hover {
+    color: black;
+    transition: color 1s;
+}
+.dark-mode .brightness-toggle:hover {
+    color: white;
+    transition: color 1s;
+}
+
+/* Global styles */
 h1,h3,a {
     font-family: "Roboto Mono", monospace;
 }
 
+/* Content styles */
 body {
     margin: 0;
 }
@@ -53,6 +139,7 @@ body {
 }
 .material-symbols-outlined {
     font-size: 2.5vh;
+    user-select: none;
 }
 .email-name:hover {
     text-decoration: underline;
