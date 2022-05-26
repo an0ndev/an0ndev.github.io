@@ -26,7 +26,7 @@ html > body.dark-mode {
 
 }
 .brightness-toggle {
-    padding-top: 1vh;
+    padding-top: 2.5vh;
     font-size: 5vh !important;
     transform-origin: top;
 }
