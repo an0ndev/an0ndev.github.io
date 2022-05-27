@@ -34,4 +34,24 @@ window.addEventListener("load", windowLoadEvent => {
                 emailCopyIcon.innerText = "error";
             });
     });
+
+    // click on link --> scroll to link target
+    document.querySelectorAll(".link").forEach(linkElem => {
+        linkElem.addEventListener("click", linkClickEvent => {
+            const thisLinkElem = linkClickEvent.target;
+            const targetElem = document.querySelector(thisLinkElem.dataset.target);
+
+            // get position of element on page
+            let elemParent = targetElem;
+            let left = 0, top = 0;
+            while (elemParent !== null) {
+                left += elemParent.offsetLeft;
+                top += elemParent.offsetTop;
+                elemParent = elemParent.offsetParent;
+            }
+
+            const boundingClientRect = targetElem.getBoundingClientRect();
+            window.scrollTo({left: left, top: top, behavior: "smooth"});
+        });
+    });
 });
