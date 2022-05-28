@@ -1,6 +1,20 @@
 let initialBrightness = true;
 let lightMode = false;
 
+function scrollToElement(elem) {
+    // get position of element on page
+    let elemParent = elem;
+    let left = 0, top = 0;
+    while (elemParent !== null) {
+        left += elemParent.offsetLeft;
+        top += elemParent.offsetTop;
+        elemParent = elemParent.offsetParent;
+    }
+
+    const boundingClientRect = elem.getBoundingClientRect();
+    window.scrollTo({left: left, top: top, behavior: "smooth"});
+}
+
 window.addEventListener("load", windowLoadEvent => {
     // click on light toggle --> switch light <--> dark mode
     document.querySelectorAll(".brightness-toggle").forEach(elem => {
@@ -39,19 +53,22 @@ window.addEventListener("load", windowLoadEvent => {
     document.querySelectorAll(".link").forEach(linkElem => {
         linkElem.addEventListener("click", linkClickEvent => {
             const thisLinkElem = linkClickEvent.target;
-            const targetElem = document.querySelector(thisLinkElem.dataset.target);
-
-            // get position of element on page
-            let elemParent = targetElem;
-            let left = 0, top = 0;
-            while (elemParent !== null) {
-                left += elemParent.offsetLeft;
-                top += elemParent.offsetTop;
-                elemParent = elemParent.offsetParent;
-            }
-
-            const boundingClientRect = targetElem.getBoundingClientRect();
-            window.scrollTo({left: left, top: top, behavior: "smooth"});
+            const targetClassName = thisLinkElem.dataset.target;
+            // save the current section as the hash
+            window.location = `#${targetClassName}`;
+            const targetElem = document.getElementsByClassName(targetClassName)[0];
+            scrollToElement(targetElem);
         });
     });
+
+    // scroll to whatever section we saved as the hash
+    const hash = window.location.hash;
+    if (hash !== "" && hash.length >= 2 && hash[0] === "#") {
+        const targetClassName = hash.slice(1);
+        const targetElems = document.getElementsByClassName(targetClassName);
+        if (targetElems.length >= 1) {
+            const targetElem = targetElems[0];
+            scrollToElement(targetElem);
+        }
+    }
 });
