@@ -15,6 +15,10 @@ function scrollToElement(elem) {
     window.scrollTo({left: left, top: top, behavior: "smooth"});
 }
 
+let currentPortfolioSlide = 0;
+let portfolioContentItems;
+let portfolioSwitchIndicators;
+
 window.addEventListener("load", windowLoadEvent => {
     // click on light toggle --> switch light <--> dark mode
     document.querySelectorAll(".brightness-toggle").forEach(elem => {
@@ -60,6 +64,34 @@ window.addEventListener("load", windowLoadEvent => {
             scrollToElement(targetElem);
         });
     });
+
+    // get array of portfolio slides
+    portfolioContentItems = document.getElementsByClassName("portfolio-content-item");
+    portfolioSwitchIndicators = document.getElementById("portfolio-switch-indicator").children;
+
+    // click portfolio move button -- switch active portfolio slide
+    function movePortfolio(deltaSlides) {
+        let newPortfolioSlide = currentPortfolioSlide - deltaSlides;
+        if (newPortfolioSlide < 0) return;
+        if (newPortfolioSlide > (portfolioContentItems.length - 1)) return;
+        currentPortfolioSlide = newPortfolioSlide;
+
+        let thisSlideIndex = 0;
+        for (const portfolioContentItem of portfolioContentItems) {
+            const translationAmount = (currentPortfolioSlide - thisSlideIndex) * -100;
+            portfolioContentItem.style.transform = `translateX(${translationAmount}%)`;
+            portfolioSwitchIndicators[thisSlideIndex].innerText = translationAmount === 0 ? "radio_button_checked" : "radio_button_unchecked";
+
+            thisSlideIndex += 1;
+        }
+    }
+
+    document.querySelector("#portfolio-switcher-left").addEventListener("click", switchLeftEvent => {
+        movePortfolio(1);
+    });
+    document.querySelector("#portfolio-switcher-right").addEventListener("click", switchRightEvent => {
+        movePortfolio(-1);
+    })
 
     // scroll to whatever section we saved as the hash
     const hash = window.location.hash;

@@ -92,22 +92,32 @@
         <div class="full-page portfolio flex-col">
             <h1>portfolio</h1>
             <div class="portfolio-row">
-                <div class="portfolio-switcher portfolio-switcher-left material-symbols-outlined">chevron_left</div>
+                <div id="portfolio-switcher-left" class="portfolio-switcher portfolio-switcher-left material-symbols-outlined">chevron_left</div>
                 <div class="portfolio-content">
-                    <div class="portfolio-content-item portfolio-content-item-placeholder portfolio-content-item-pos-0">
-                        <h3>portfolio item 1</h3>
+                    <div class="portfolio-content-item" style="transform: translateX(0%);">
+                        <div class="portfolio-item-row portfolio-item-top-row" style="height: 50%; padding-bottom: 2vh;">
+                            <div class="portfolio-item-top-left background-alt"></div>
+                            <div class="portfolio-item-top-right background-alt"></div>
+                        </div>
+                        <div class="portfolio-item-row portfolio-item-bottom-row" style="height: 50%;">
+                            <div class="portfolio-item-bottom-left background-alt" style="height: 100%; width: 30%; padding-right: 2vh;">
+                                <h3>portfolio item 1</h3>
+                            </div>
+                            <div class="portfolio-item-bottom-right background-alt" style="height: 100%; width: 70%;"></div>
+                        </div>
                     </div>
-                    <div class="portfolio-content-item portfolio-content-item-placeholder portfolio-content-item-pos-1">
+                    <div class="portfolio-content-item" style="transform: translateX(100%);">
                         <h3>portfolio item 2</h3>
                     </div>
-                    <div class="portfolio-content-item portfolio-content-item-placeholder portfolio-content-item-pos-2">
+                    <div class="portfolio-content-item" style="transform: translateX(200%);">
                         <h3>portfolio item 3</h3>
                     </div>
                 </div>
-                <div class="portfolio-switcher portfolio-switcher-right material-symbols-outlined">chevron_right</div>
+                <div id="portfolio-switcher-right" class="portfolio-switcher portfolio-switcher-right material-symbols-outlined">chevron_right</div>
             </div>
-            <div class="portfolio-switch-indicator">
+            <div class="portfolio-switch-indicator" id="portfolio-switch-indicator">
                 <span class="material-symbols-outlined">radio_button_checked</span>
+                <span class="material-symbols-outlined">radio_button_unchecked</span>
                 <span class="material-symbols-outlined">radio_button_unchecked</span>
             </div>
         </div>
