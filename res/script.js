@@ -18,6 +18,10 @@ function scrollToElement(elem) {
 let currentPortfolioSlide = 0;
 let portfolioContentItems;
 let portfolioSwitchIndicators;
+let portfolioContent;
+
+let portfolioItemInitialTouchPos;
+let portfolioItemLatestTouchPos;
 
 window.addEventListener("load", windowLoadEvent => {
     // click on light toggle --> switch light <--> dark mode
@@ -69,18 +73,28 @@ window.addEventListener("load", windowLoadEvent => {
     portfolioContentItems = document.getElementsByClassName("portfolio-content-item");
     portfolioSwitchIndicators = document.getElementById("portfolio-switch-indicator").children;
 
+    portfolioContent = document.getElementById("portfolio-content");
+
     // click portfolio move button -- switch active portfolio slide
     function movePortfolio(deltaSlides) {
         let newPortfolioSlide = currentPortfolioSlide - deltaSlides;
-        if (newPortfolioSlide < 0) return;
-        if (newPortfolioSlide > (portfolioContentItems.length - 1)) return;
+
+        // bounds checking
+        if (newPortfolioSlide < 0) newPortfolioSlide = 0;
+        if (newPortfolioSlide > (portfolioContentItems.length - 1)) newPortfolioSlide = portfolioContentItems.length - 1;
+        if (newPortfolioSlide === currentPortfolioSlide) return;
+
         currentPortfolioSlide = newPortfolioSlide;
 
+        // do translation
         let thisSlideIndex = 0;
+        const translationAmount = currentPortfolioSlide * -1;
+        portfolioContent.style.transform = `translateX(calc(${translationAmount} * var(--portfolio-item-width)))`;
+
+        // update switch indicators
+        const closestPortfolioSlide = Math.round(currentPortfolioSlide);
         for (const portfolioContentItem of portfolioContentItems) {
-            const translationAmount = (currentPortfolioSlide - thisSlideIndex) * -100;
-            portfolioContentItem.style.transform = `translateX(${translationAmount}%)`;
-            portfolioSwitchIndicators[thisSlideIndex].innerText = translationAmount === 0 ? "radio_button_checked" : "radio_button_unchecked";
+            portfolioSwitchIndicators[thisSlideIndex].innerText = thisSlideIndex === closestPortfolioSlide ? "radio_button_checked" : "radio_button_unchecked";
 
             thisSlideIndex += 1;
         }
@@ -91,7 +105,60 @@ window.addEventListener("load", windowLoadEvent => {
     });
     document.querySelector("#portfolio-switcher-right").addEventListener("click", switchRightEvent => {
         movePortfolio(-1);
-    })
+    });
+
+    const parseVW = (vw) => {return window.innerWidth * (vw / 100)};
+    const parseVH = (vh) => {return window.innerHeight * (vh / 100)};
+    function getPortfolioItemWidth() {
+        const portfolioItemWidthStr = getComputedStyle(document.body).getPropertyValue("--portfolio-item-width").trim();
+        const portfolioItemWidthCalcParseMatch = /^calc\((?<vw_value>[0-9]+)vw - (?<vh_value>[0-9]+)vh\)$/.exec(portfolioItemWidthStr);
+        const portfolioItemWidthVWParseMatch = /^(?<vw_value>[0-9]+)vw$/.exec(portfolioItemWidthStr);
+            if (portfolioItemWidthCalcParseMatch !== null) {
+                return parseVW(portfolioItemWidthCalcParseMatch.groups.vw_value) - parseVH(portfolioItemWidthCalcParseMatch.groups.vh_value);
+            } else if (portfolioItemWidthVWParseMatch !== null) {
+                return parseVW(portfolioItemWidthVWParseMatch.groups.vw_value);
+            } else {
+                throw new Error("couldn't parse portfolio item width");
+            }
+    }
+
+    Array.from(portfolioContentItems).forEach(portfolioContentItem => {
+        portfolioContentItem.addEventListener("touchstart", touchStartEvent => {
+            portfolioItemInitialTouchPos = touchStartEvent.changedTouches[0].clientX;
+            portfolioItemLatestTouchPos = portfolioItemInitialTouchPos;
+            portfolioContent.classList.add("portfolio-content-being-dragged");
+        });
+        portfolioContentItem.addEventListener("touchmove", touchMoveEvent => {
+            const thisTouchPos = touchMoveEvent.changedTouches[0].clientX;
+            const differenceFraction = (thisTouchPos - portfolioItemLatestTouchPos) / getPortfolioItemWidth();
+            movePortfolio(differenceFraction);
+            portfolioItemLatestTouchPos = thisTouchPos;
+        });
+        portfolioContentItem.addEventListener("touchend", touchEndEvent => {
+            portfolioContent.classList.remove("portfolio-content-being-dragged");
+            const totalDifferenceFraction = (portfolioItemLatestTouchPos - portfolioItemInitialTouchPos) / getPortfolioItemWidth();
+            // if we have moved at least a third of a slide in a given direction
+            if (Math.abs(totalDifferenceFraction) >= 1/3) {
+                // move to the next slide in that direction
+                let targetSlide;
+                let toRight = totalDifferenceFraction < 0; // movement of touch in leftward (negative) direction --> movement of slide in rightward direction
+                if (Math.round(currentPortfolioSlide) === currentPortfolioSlide) {
+                    targetSlide = currentPortfolioSlide;
+                } else {
+                    if (toRight) {
+                        targetSlide = Math.floor(currentPortfolioSlide + 1);
+                    } else {
+                        targetSlide = Math.ceil(currentPortfolioSlide - 1);
+                    }
+                }
+                movePortfolio(currentPortfolioSlide - targetSlide);
+            } else {
+                // otherwise, move to the closest slide
+                movePortfolio((Math.round(currentPortfolioSlide) - currentPortfolioSlide) * -1);
+            }
+            portfolioItemLatestTouchPos = null;
+        });
+    });
 
     // scroll to whatever section we saved as the hash
     const hash = window.location.hash;

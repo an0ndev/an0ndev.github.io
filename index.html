@@ -20,16 +20,16 @@
         </div>
         <div class="full-page flex-col">
             <span class="intro-logo">
-                <svg id="svg" version="1.1" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+                <svg id="svg" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
                     <path d="M198.200 111.152 L 24.200 171.036 24.078 172.480 C 23.959 173.890,24.548 174.548,48.774 200.062 L 73.591 226.200 84.562 253.600 L 95.533 281.000 97.275 280.981 C 98.924 280.962,99.416 280.631,106.542 274.728 L 114.067 268.494 122.379 276.947 C 126.951 281.596,144.488 299.530,161.351 316.800 C 191.778 347.961,192.023 348.200,193.596 348.200 L 195.182 348.200 285.391 200.889 C 381.595 43.789,377.231 51.167,373.900 51.234 C 372.747 51.257,316.193 70.543,198.200 111.152 M369.483 57.273 L 368.200 59.346 368.075 58.073 C 367.977 57.077,367.759 56.795,367.075 56.778 C 366.483 56.764,366.782 56.518,368.000 56.020 C 370.727 54.903,370.874 55.027,369.483 57.273 M362.989 58.133 C 362.555 58.426,297.634 95.174,218.721 139.794 C 97.047 208.592,75.223 221.063,75.121 221.854 C 75.019 222.637,28.715 174.754,28.094 173.224 C 28.000 172.994,362.392 57.713,363.389 57.632 C 363.603 57.614,363.423 57.840,362.989 58.133 M367.510 60.500 C 367.189 60.995,328.351 124.400,281.202 201.400 C 234.053 278.400,195.008 342.152,194.436 343.072 L 193.395 344.744 147.319 297.602 L 101.242 250.460 132.921 227.764 C 184.316 190.942,189.495 187.230,280.400 122.050 C 328.250 87.742,367.556 59.655,367.746 59.635 C 367.936 59.616,367.830 60.005,367.510 60.500 M340.180 75.143 C 339.971 75.332,306.410 99.395,265.600 128.616 C 154.500 208.168,142.431 216.816,119.689 233.166 C 108.188 241.435,98.444 248.368,98.037 248.574 C 97.146 249.024,96.948 250.914,96.554 262.713 C 96.405 267.174,96.167 270.897,96.024 270.985 C 95.617 271.237,78.067 223.442,78.422 223.050 C 78.746 222.693,340.052 74.819,340.380 74.807 C 340.479 74.803,340.389 74.954,340.180 75.143 M104.203 268.172 C 101.602 270.941,99.435 273.161,99.387 273.104 C 99.339 273.047,99.583 268.897,99.930 263.882 L 100.560 254.765 104.746 258.950 L 108.931 263.136 104.203 268.172" />
                 </svg>
             </span>
             <h1 class="intro-title">eric reed</h1>
             <h3 class="intro-subtitle">computer hobbyist, sysadmin, full-stack web developer</h3>
             <div class="intro-links">
-                <a class="link" data-target="bio">bio</a>
-                <a class="link" data-target="portfolio">portfolio</a>
-                <a class="link" data-target="contact">contact</a>
+                <p><a class="link" data-target="bio">bio</a></p>
+                <p><a class="link" data-target="portfolio">portfolio</a></p>
+                <p><a class="link" data-target="contact">contact</a></p>
             </div>
         </div>
         <div class="full-page bio background-alt">
@@ -93,24 +93,78 @@
             <h1>portfolio</h1>
             <div class="portfolio-row">
                 <div id="portfolio-switcher-left" class="portfolio-switcher portfolio-switcher-left material-symbols-outlined">chevron_left</div>
-                <div class="portfolio-content">
-                    <div class="portfolio-content-item" style="transform: translateX(0%);">
-                        <div class="portfolio-item-row portfolio-item-top-row" style="height: 50%; padding-bottom: 2vh;">
-                            <div class="portfolio-item-top-left background-alt"></div>
-                            <div class="portfolio-item-top-right background-alt"></div>
-                        </div>
-                        <div class="portfolio-item-row portfolio-item-bottom-row" style="height: 50%;">
-                            <div class="portfolio-item-bottom-left background-alt" style="height: 100%; width: 30%; padding-right: 2vh;">
-                                <h3>portfolio item 1</h3>
+                <div class="portfolio-track">
+                    <div class="portfolio-content" id="portfolio-content">
+                        <div class="portfolio-content-item">
+                            <div class="portfolio-item-section-contentful portfolio-item-top-left background-alt portfolio-image portfolio-image-0-left">
+                                <p class="portfolio-image-label">Wall-mounted camera and confidence monitor</p>
                             </div>
-                            <div class="portfolio-item-bottom-right background-alt" style="height: 100%; width: 70%;"></div>
+                            <div class="portfolio-item-section-contentful portfolio-item-top-right background-alt portfolio-image portfolio-image-0-right">
+                                <p class="portfolio-image-label">Streaming software setup (OBS Studio)</p>
+                            </div>
+                            <div class="portfolio-item-section-contentful portfolio-item-bottom-left background-alt">
+                                <h2 class="portfolio-item-title">Federated Church Live Streaming</h2>
+                                <p><i>March 2020-present</i></p>
+                            </div>
+                            <div class="portfolio-item-section-contentful portfolio-item-bottom-right background-alt">
+                                <p>I worked with staff at my local church to design and execute a virtual service solution during COVID.</p>
+                                <ul>
+                                    <li><b>Professionalism</b>
+                                        <ul>
+                                            <li>Working with church leaders to budget and purchase a capable PC, camera, and router</li>
+                                            <li>Leading and training of a team to continue running the stream indefinitely</li>
+                                        </ul>
+                                    </li>
+                                    <li><b>System administration</b>
+                                        <ul>
+                                            <li>Setup and management of a Linux system, then migration to Windows</li>
+                                        </ul>
+                                    </li>
+                                    <li><b>Software engineering</b>
+                                        <ul>
+                                            <li>Custom camera control (pan/tilt/zoom) software built with the NewTek NDI SDK</li>
+                                            <li>Initially on Linux in C++ with GTK, ported to Windows in Python with tkinter</li>
+                                            <li>Also interfaced with Launchpad hardware via RtMidi library</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
-                    </div>
-                    <div class="portfolio-content-item" style="transform: translateX(100%);">
-                        <h3>portfolio item 2</h3>
-                    </div>
-                    <div class="portfolio-content-item" style="transform: translateX(200%);">
-                        <h3>portfolio item 3</h3>
+                        <div class="portfolio-content-item">
+                            <div class="portfolio-item-section-contentful portfolio-item-top-left background-alt portfolio-image portfolio-image-1-left">
+                                <p class="portfolio-image-label"><a href="https://github.com/openssl/openssl/compare/OpenSSL_1_1_1-stable...an0ndev:OpenSSL_1_1_1-stable">Patches made to the OpenSSL library</a></p>
+                            </div>
+                            <div class="portfolio-item-section-contentful portfolio-item-top-right background-alt portfolio-image portfolio-image-1-right">
+                                <p class="portfolio-image-label">The final presentation of the project</p>
+                            </div>
+                            <div class="portfolio-item-section-contentful portfolio-item-bottom-left background-alt">
+                                <h2 class="portfolio-item-title">Breaking JA3 Fingerprinting</h2>
+                                <p><i>August 2021-May 2022</i></p>
+                            </div>
+                            <div class="portfolio-item-section-contentful portfolio-item-bottom-right background-alt">
+                                <p>As my senior capstone project, I conducted security research into, and was able to defeat, an HTTPS connection fingerprinting method.</p>
+                                <ul>
+                                    <li><b>Software engineering</b>
+                                        <ul>
+                                            <li>Research into, and modification of, the OpenSSL C library</li>
+                                            <li>Customizable reimplementation of Python's "ssl" module</li>
+                                            <li>Simple user interface with tkinter</li>
+                                            <li>Changes and readme tracked via Git and <a href="https://github.com/an0ndev/requests-ja3">published on GitHub (23 stars)</a></li>
+                                        </ul>
+                                    </li>
+                                    <li><b>Professionalism</b>
+                                        <ul>
+                                            <li>Creation and presentation of a project pitch to teachers</li>
+                                            <li>Planning and execution of a fine-grained timetable with help from my mentor</li>
+                                            <li>Presentation and demo of the final product to teachers</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="portfolio-content-item">
+                            <h3>portfolio item 3</h3>
+                        </div>
                     </div>
                 </div>
                 <div id="portfolio-switcher-right" class="portfolio-switcher portfolio-switcher-right material-symbols-outlined">chevron_right</div>
