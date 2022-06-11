@@ -106,7 +106,15 @@ window.addEventListener("load", windowLoadEvent => {
     document.querySelector("#portfolio-switcher-right").addEventListener("click", switchRightEvent => {
         movePortfolio(-1);
     });
+    document.addEventListener("keydown", keyDownEvent => {
+        if (keyDownEvent.key === "ArrowLeft") {
+            movePortfolio(1);
+        } else if (keyDownEvent.key === "ArrowRight") {
+            movePortfolio(-1);
+        }
+    });
 
+    /* touch-and-drag to switch portfolio slides */
     const parseVW = (vw) => {return window.innerWidth * (vw / 100)};
     const parseVH = (vh) => {return window.innerHeight * (vh / 100)};
     function getPortfolioItemWidth() {
@@ -158,6 +166,59 @@ window.addEventListener("load", windowLoadEvent => {
             }
             portfolioItemLatestTouchPos = null;
         });
+    });
+
+    // show portfolio images/videos in fullscreen when clicked
+    const fullscreenElementsContainer = document.getElementById("fullscreen-elements-container");
+    const fullscreenSources = document.querySelectorAll("[data-fullscreen-type]");
+    fullscreenSources.forEach(fullscreenSource_ => {
+        fullscreenSource_.addEventListener("click", async fullscreenSourceClickEvent => {
+            const fullscreenSource = fullscreenSourceClickEvent.currentTarget;
+            const fullscreenType = fullscreenSource_.dataset.fullscreenType;
+
+            let elem;
+
+            switch (fullscreenType) {
+                case "image-from-background": {
+                    const backgroundImageProperty = window.getComputedStyle(fullscreenSource).getPropertyValue("background-image");
+                    const backgroundImageURLMatch = /^url\("(?<url_value>[a-zA-Z0-9_:/.]+)"\)$/.exec(backgroundImageProperty);
+                    if (backgroundImageURLMatch === null) {
+                        throw new Error(`could not parse URL from property value ${backgroundImageProperty}`);
+                    }
+                    const backgroundImageURL = backgroundImageURLMatch.groups.url_value;
+
+                    elem = document.createElement("img");
+                    elem.src = backgroundImageURL;
+
+                    break;
+                }
+                case "video-from-url": {
+                    const videoURL = fullscreenSource.dataset.fullscreenVideoUrl;
+
+                    elem = document.createElement("video");
+                    const sourceElem = document.createElement("source");
+                    sourceElem.src = videoURL;
+                    elem.appendChild(sourceElem);
+                    elem.autoplay = true;
+
+                    break;
+                }
+                default: {
+                    throw new Error(`unknown fullscreen type ${fullscreenType}`);
+                }
+            }
+
+            fullscreenElementsContainer.appendChild(elem);
+            await elem.requestFullscreen();
+        });
+    });
+    document.addEventListener("fullscreenchange", fullscreenChangeEvent => {
+        const exiting = document.fullscreenElement === null;
+        if (!exiting) return;
+
+        while (fullscreenElementsContainer.children.length > 0) {
+            fullscreenElementsContainer.removeChild(fullscreenElementsContainer.firstChild);
+        }
     });
 
     // scroll to whatever section we saved as the hash

@@ -96,15 +96,15 @@
                 <div class="portfolio-track">
                     <div class="portfolio-content" id="portfolio-content">
                         <div class="portfolio-content-item">
-                            <div class="portfolio-item-section-contentful portfolio-item-top-left background-alt portfolio-image portfolio-image-0-left">
-                                <p class="portfolio-image-label">Wall-mounted camera and confidence monitor</p>
+                            <div class="portfolio-item-section-contentful portfolio-item-top-left background-alt portfolio-image portfolio-image-0-left" data-fullscreen-type="image-from-background">
+                                <p class="portfolio-video-label">Wall-mounted camera and confidence monitor</p>
                             </div>
-                            <div class="portfolio-item-section-contentful portfolio-item-top-right background-alt portfolio-image portfolio-image-0-right">
-                                <p class="portfolio-image-label">Streaming software setup (OBS Studio)</p>
+                            <div class="portfolio-item-section-contentful portfolio-item-top-right background-alt portfolio-image portfolio-image-0-right" data-fullscreen-type="image-from-background">
+                                <p class="portfolio-video-label">Streaming software setup (OBS Studio)</p>
                             </div>
                             <div class="portfolio-item-section-contentful portfolio-item-bottom-left background-alt">
                                 <h2 class="portfolio-item-title">Federated Church Live Streaming</h2>
-                                <p><i>March 2020-present</i></p>
+                                <p><i>March 2020-</i></p>
                             </div>
                             <div class="portfolio-item-section-contentful portfolio-item-bottom-right background-alt">
                                 <p>I worked with staff at my local church to design and execute a virtual service solution during COVID.</p>
@@ -131,11 +131,11 @@
                             </div>
                         </div>
                         <div class="portfolio-content-item">
-                            <div class="portfolio-item-section-contentful portfolio-item-top-left background-alt portfolio-image portfolio-image-1-left">
-                                <p class="portfolio-image-label"><a href="https://github.com/openssl/openssl/compare/OpenSSL_1_1_1-stable...an0ndev:OpenSSL_1_1_1-stable">Patches made to the OpenSSL library</a></p>
+                            <div class="portfolio-item-section-contentful portfolio-item-top-left background-alt portfolio-image portfolio-image-1-left" data-fullscreen-type="image-from-background">
+                                <p class="portfolio-video-label"><a href="https://github.com/openssl/openssl/compare/OpenSSL_1_1_1-stable...an0ndev:OpenSSL_1_1_1-stable">Patches made to the OpenSSL library</a></p>
                             </div>
-                            <div class="portfolio-item-section-contentful portfolio-item-top-right background-alt portfolio-image portfolio-image-1-right">
-                                <p class="portfolio-image-label">The final presentation of the project</p>
+                            <div class="portfolio-item-section-contentful portfolio-item-top-right background-alt portfolio-image portfolio-image-1-right" data-fullscreen-type="image-from-background">
+                                <p class="portfolio-video-label">The final presentation of the project</p>
                             </div>
                             <div class="portfolio-item-section-contentful portfolio-item-bottom-left background-alt">
                                 <h2 class="portfolio-item-title">Breaking JA3 Fingerprinting</h2>
@@ -163,7 +163,36 @@
                             </div>
                         </div>
                         <div class="portfolio-content-item">
-                            <h3>portfolio item 3</h3>
+                            <div class="portfolio-item-section-contentful portfolio-item-top-left background-alt portfolio-video portfolio-image-2-left" data-fullscreen-type="video-from-url" data-fullscreen-video-url="/res/layerone_long_demo.mp4">
+                                <div class="portfolio-video-overlay">
+                                    <p class="portfolio-video-play-button material-symbols-outlined">play_arrow</p>
+                                    <p class="portfolio-video-label">Short demo (modifying outgoing chat)</p>
+                                </div>
+                            </div>
+                            <div class="portfolio-item-section-contentful portfolio-item-top-right background-alt portfolio-video portfolio-image-2-right" data-fullscreen-type="video-from-url" data-fullscreen-video-url="/res/layerone_short_demo.mp4">
+                                <div class="portfolio-video-overlay">
+                                    <p class="portfolio-video-play-button material-symbols-outlined">play_arrow</p>
+                                    <p class="portfolio-video-label">Long demo (server list ping, packet inspection)</p>
+                                </div>
+                            </div>
+                            <div class="portfolio-item-section-contentful portfolio-item-bottom-left background-alt">
+                                <h2 class="portfolio-item-title">Minecraft Network Proxy</h2>
+                                <p><i>Summer 2021</i></p>
+                            </div>
+                            <div class="portfolio-item-section-contentful portfolio-item-bottom-right background-alt">
+                                <p>Using <a href="https://wiki.vg/">online resources</a>, I developed a Minecraft man-in-the-middle proxy, which allows for inspection and modification of encrypted game traffic.</p>
+                                <ul>
+                                    <li><b>Software engineering</b>
+                                        <ul>
+                                            <li>Implementation of Minecraft protocol given existing specifications</li>
+                                            <li>Easy-to-read packet log UI, simple public "handler" API (<a href="https://github.com/an0ndev/LayerOne/blob/master/example_handlers/chat_modifier.py">example usage</a>)</li>
+                                            <li>Usage implementing quality-of-life Hypixel changes (better friends list, etc.)</li>
+                                            <li>Changes documented and tracked via Git and <a href="https://github.com/an0ndev/LayerOne">published on GitHub</a></li>
+                                            <li>Project uses TCP sockets, multithreading, encryption + decryption, serialization + deserialization, OOP techniques</li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -184,5 +213,6 @@
             </div>
             <p>:)</p>
         </div>
+        <div class="hidden" id="fullscreen-elements-container"></div>
     </body>
 </html>
