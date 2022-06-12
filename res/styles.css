@@ -323,6 +323,12 @@ body {
 .portfolio-image-2-right {
     background-image: url("/res/layerone_long_demo_thumb.png");
 }
+.portfolio-image-3-left {
+    background-image: url("/res/safestreak_ui.png");
+}
+.portfolio-image-3-right {
+    background-image: url("/res/safestreak_github.png");
+}
 
 .portfolio-item-top-left {
     grid-area: top-left;
