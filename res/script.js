@@ -173,6 +173,10 @@ window.addEventListener("load", windowLoadEvent => {
     const fullscreenSources = document.querySelectorAll("[data-fullscreen-type]");
     fullscreenSources.forEach(fullscreenSource_ => {
         fullscreenSource_.addEventListener("click", async fullscreenSourceClickEvent => {
+            while (fullscreenElementsContainer.hasChildNodes()) {
+                fullscreenElementsContainer.removeChild(fullscreenElementsContainer.childNodes[0]);
+            }
+
             const fullscreenSource = fullscreenSourceClickEvent.currentTarget;
             const fullscreenType = fullscreenSource_.dataset.fullscreenType;
 
@@ -209,7 +213,23 @@ window.addEventListener("load", windowLoadEvent => {
             }
 
             fullscreenElementsContainer.appendChild(elem);
-            await elem.requestFullscreen();
+
+            if (fullscreenElementsContainer.classList.contains("fullscreen-elements-container-unscrollable")) {
+                fullscreenElementsContainer.classList.remove("fullscreen-elements-container-unscrollable");
+            }
+            if (fullscreenElementsContainer.classList.contains("fullscreen-elements-container-scrollable")) {
+                fullscreenElementsContainer.classList.remove("fullscreen-elements-container-scrollable");
+            }
+
+            if (fullscreenSource.dataset.scrollable !== undefined) {
+                fullscreenElementsContainer.classList.add("fullscreen-elements-container-scrollable");
+                elem.classList.add("fullscreen-element-scrollable");
+            } else {
+                fullscreenElementsContainer.classList.add("fullscreen-elements-container-unscrollable");
+                elem.classList.add("fullscreen-element-unscrollable");
+            }
+
+            await fullscreenElementsContainer.requestFullscreen();
         });
     });
     document.addEventListener("fullscreenchange", fullscreenChangeEvent => {

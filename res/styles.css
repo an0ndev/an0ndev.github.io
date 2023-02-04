@@ -306,28 +306,34 @@ body {
     padding: 2vh;
 }
 .portfolio-image-0-left {
-    background-image: url("/res/wall_mounted_camera.png");
+    background-image: url("/res/portfolio/0/wall_mounted_camera.png");
 }
 .portfolio-image-0-right {
-    background-image: url("/res/livestreaming_software_setup.png");
+    background-image: url("/res/portfolio/0/livestreaming_software_setup.png");
 }
 .portfolio-image-1-left {
-    background-image: url("/res/isee_openssl_patches.png");
+    background-image: url("/res/portfolio/1/isee_openssl_patches.png");
 }
 .portfolio-image-1-right {
-    background-image: url("/res/isee_final_presentation.jpg");
+    background-image: url("/res/portfolio/1/isee_final_presentation.jpg");
 }
 .portfolio-image-2-left {
-    background-image: url("/res/layerone_short_demo_thumb.png");
+    background-image: url("/res/portfolio/2/layerone_short_demo_thumb.png");
 }
 .portfolio-image-2-right {
-    background-image: url("/res/layerone_long_demo_thumb.png");
+    background-image: url("/res/portfolio/2/layerone_long_demo_thumb.png");
 }
 .portfolio-image-3-left {
-    background-image: url("/res/safestreak_ui.png");
+    background-image: url("/res/portfolio/3/safestreak_ui.png");
 }
 .portfolio-image-3-right {
-    background-image: url("/res/safestreak_github.png");
+    background-image: url("/res/portfolio/3/safestreak_github.png");
+}
+.portfolio-image-4-left {
+    background-image: url("/res/portfolio/4/journal.png");
+}
+.portfolio-image-4-right {
+    background-image: url("/res/portfolio/4/process_arguments.png");
 }
 
 .portfolio-item-top-left {
@@ -362,10 +368,27 @@ body {
 .contact-email {
     display: flex;
     justify-content: center;
-    font-style: italic;
 }
 .email-name {
     font-size: 2vh;
+    font-style: italic;
     margin-block-start: 2vh;
     margin-block-end: 2vh;
+}
+
+.fullscreen-elements-container-unscrollable {
+    object-fit: contain;
+}
+
+.fullscreen-elements-container-scrollable {
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+.fullscreen-element-unscrollable {
+    object-fit: contain;
+    width: 100vw;
+    height: 100vh;
+}
+.fullscreen-element-scrollable {
+    width: 100vw;
 }
