@@ -23,7 +23,7 @@ let portfolioContent;
 let portfolioItemInitialTouchPos;
 let portfolioItemLatestTouchPos;
 
-window.addEventListener("load", windowLoadEvent => {
+document.addEventListener("DOMContentLoaded", documentContentLoadedEvent => {
     // click on light toggle --> switch light <--> dark mode
     document.querySelectorAll(".brightness-toggle").forEach(elem => {
         elem.addEventListener("click", brightnessToggleClickEvent => {
